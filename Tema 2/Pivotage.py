@@ -1,8 +1,5 @@
-## Espai per fer l'exercici
-
+# feu tot el codi (factorització amb pivotatge parcial esglaonat), i càlcul de matriu inversa vosaltres mateixos:
 import numpy as np
-import scipy
-import scipy.linalg 
 
 def prettyP (v):
     n = len(v)
