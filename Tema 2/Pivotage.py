@@ -114,7 +114,7 @@ P2, LU2 = PA_LU_pivEsg(A2_test)
 print(f"P2 = \n {P2}\n \nLU2 = \n{LU2} \n")
 
 U2 = np.triu(LU2)
-L2 = LU2 - U + np.eye(4)
+L2 = LU2 - U2 + np.eye(4)
 print("PA: \n", P2@A2_test, "\n")
 print("LU: \n", L2@U2)
 
