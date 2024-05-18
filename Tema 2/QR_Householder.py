@@ -17,7 +17,9 @@ def QR_Householder (matA):
         Q[:, k:] = Q[:, k:] @ H_k
     return np.round(Q[:, :n], 8), np.round(A[:n,:], 8)
 
-def QR_Householder_solve (matA, b):
+def QR_Householder_Qtb (matA, b):
+    '''importante, el householder Qtb no resuelve min(Ax-b) sino que devuelve R y Qtb tal que la solución de minimos 
+    cuadrados es la solución de Rx = Qtb con R triangular superior, hay que usar triU(R, Qtb) para resolver el sistema'''
     R = matA.copy().astype(float)
     Qtb = b.copy().astype(float)[:,np.newaxis]
     m, n = R.shape
@@ -29,6 +31,7 @@ def QR_Householder_solve (matA, b):
         R[k:m, k:n] -= v @ (2 * (v.T @ R[k:m, k:n]))
         Qtb[k:m] -= v @ (2 * (v.T @ Qtb[k:m]))
     return np.round(Qtb[:n].T[0], 8), np.round(R[:n,:], 8)
+
 
 print("test Q y R")
 A_test = np.array([[1,0,1],[0,0,1],[1,-2,1],[0,1,0]])
