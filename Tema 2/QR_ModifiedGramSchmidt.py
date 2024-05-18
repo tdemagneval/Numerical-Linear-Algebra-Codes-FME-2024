@@ -29,4 +29,4 @@ def mgs_fact_QR(A):
 A_test = np.array([[1,0.0,1],[0,2,1],[1,-2,1],[0,1,0]], dtype=np.float64)
 Q, R = mgs_fact_QR(A_test)
 print(f"la solució és:\n Q: \n{Q}\n \nR: \n{R}\n")
-print("QR-A = 0 masomenos: \n", Q@R-A)
+print("QR-A = 0: \n", np.round(Q@R-A,8))
