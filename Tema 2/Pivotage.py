@@ -59,15 +59,15 @@ def PA_LU_pivEsg (matA, tol = 1.e-10):
                 A[i,j] -= m*A[k,j]
     return prettyP(P), A
 
-def triL(L, b, tol=1e-10):
+def triL(L, b, tol=1e-10, notOnes = True):
     n = len(b)
-    x = b.copy()
+    x = b
     for i in range(0, n):
         for j in range(0,i):
             x[i] -= L[i, j]*x[j]
         if (abs(L[i, i]) < tol):
             raise ValueError("Diagonal element too small")
-        else:
+        elif notOnes:
             x[i] /= L[i,i]
     return x
 
@@ -88,7 +88,7 @@ def invPivEsg(matA):
     P, LU = PA_LU_pivEsg(matA)
     U = np.triu(LU)
     L = LU - U + np.eye(n)
-    # 1) resolver Ly = e_i para cada i
+    # 1) resolver Ly = e_{p(i)} para cada i
     # 2) resolver Ux_i = y
     # 3) cada c_i será una columna de I
     I = np.zeros((n,n))
