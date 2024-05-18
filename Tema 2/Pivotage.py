@@ -120,4 +120,4 @@ print("LU: \n", L2@U2)
 
 print("Inversa:")
 B2 = invPivEsg(A2_test)
-print(f"1/A = \n{B2} \n \nA * 1/A = identidad masomenos\n {A2_test@B2}")
+print(f"1/A = \n{B2} \n \nA * 1/A = identidad \n {np.round(A2_test@B2,8)}")
