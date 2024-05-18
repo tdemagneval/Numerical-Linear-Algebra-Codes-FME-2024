@@ -71,5 +71,5 @@ print(f"L de numpy: \n {L2} \n")
 B = choleskyInv(A_test)
 print(f"1/A: \n {B} \n")
 
-print("A * 1/A = Id masomenos")
-print(A_test@B)
+print("A * 1/A = Id")
+print(np.round(A_test@B,8))
