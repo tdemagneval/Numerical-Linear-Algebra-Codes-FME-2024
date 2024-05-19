@@ -63,7 +63,7 @@ def iterPow (matA, z0, tol = 1.e-10, maxIter = 100):
     sigma = 0
     for k in range(maxIter):
         z0 = z
-        z = A@z0
+        z = matA@z0
         z = z/np.linalg.norm(z)
         sigma0 = sigma
         sigma = z.T @ matA @ z
