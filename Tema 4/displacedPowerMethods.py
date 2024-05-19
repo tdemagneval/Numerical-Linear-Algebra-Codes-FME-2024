@@ -14,6 +14,12 @@ def iterPow (matA, z0, tol = 1.e-10, maxIter = 100):
             return sigma, z, k+1
     return None, -maxIter
 
+def dispPow(A, z0, q, tol=1.e-10, maxIter = 100):
+    n = len(A)
+    M = A - q * np.eye(n)
+    print(M)
+    vap, vep, iter = iterPow(M, z0, tol=tol, maxIter = maxIter) 
+    return vap + q, vep, iter
 
 def PA_LU_pivEsg (matA, tol = 1.e-10):
     A = matA.copy().astype(float)
