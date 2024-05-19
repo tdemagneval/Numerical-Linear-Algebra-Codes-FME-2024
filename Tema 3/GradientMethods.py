@@ -32,7 +32,7 @@ def ConjugateGradient(A, b, x0, tol = 1.e-10, maxIter = 100):
             return x, k+1
     return None, -maxIter
 
-
+ç
 N = 100
 tol = 1.e-10
 A = 2 * np.eye(N) + np.eye(N, k = 5) + np.eye(N, k = -5)
