@@ -44,7 +44,7 @@ print("test Qtb y R")
 
 A_test = np.array([[1,0,1],[0,0,1],[1,-2,1],[0,1,0]])
 b_test = np.array([1, 2, 1, 3])
-Qtb_test, R_test = QR_Householder_solve (A_test, b_test)
+Qtb_test, R_test = QR_Householder_Qtb (A_test, b_test)
 Q, R = np.linalg.qr(A_test)
 Qtb = Q.T @ b_test
 print(Qtb_test,'\n\n', np.round(Qtb, 8), '\n')
