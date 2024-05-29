@@ -1,6 +1,7 @@
 import numpy as np
 
-def Jacobi (x0, matA, b, tol=1.e-10, maxIter=100):
+def Jacobi (z, matA, b, tol=1.e-10, maxIter=100):
+    matA, b, x0 = np.array(matA, dtype = float), np.array(b, dtype = float), np.array(z, dtype = float)
     n = len(b)
     x = b.copy()
     for k in range(maxIter):
