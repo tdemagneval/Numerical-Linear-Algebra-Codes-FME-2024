@@ -1,6 +1,7 @@
 import numpy as np
 
-def iterGS (x0, matA, b, tol=1.e-10, maxIter=100):
+def iterGS (z, matA, b, tol=1.e-10, maxIter=100):
+    matA, b, x0 = np.array(matA, dtype = float), np.array(b, dtype = float), np.array(z, dtype = float)
     n = len(b)
     x = x0.copy()
     for k in range(maxIter):
