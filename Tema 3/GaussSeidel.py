@@ -8,9 +8,9 @@ def iterGS (x0, matA, b, tol=1.e-10, maxIter=100):
             x[i] = b[i]
             for j in range(n):
                 if (j < i): 
-                    x[i] -= matA[i,j]*x0[j] 
+                    x[i] -= matA[i,j]*x[j] 
                 if (j > i):
-                    x[i] -= matA[i,j]*x[j]
+                    x[i] -= matA[i,j]*x0[j]
             x[i] /= matA[i,i]
         if (np.linalg.norm(x-x0) < tol * np.linalg.norm(x)):
             return x, k
