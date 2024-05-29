@@ -12,7 +12,7 @@ def Jacobi (z, matA, b, tol=1.e-10, maxIter=100):
                     x[i] -= matA[i,j]*x0[j]
             x[i] /= matA[i,i]
         if (np.linalg.norm(x-x0) < tol * np.linalg.norm(x)):
-            return x, k
+            return x, k+1
         x0 = x
     return x, -maxIter
 
