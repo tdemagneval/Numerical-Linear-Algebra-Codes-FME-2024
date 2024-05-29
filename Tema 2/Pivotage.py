@@ -1,12 +1,6 @@
 # feu tot el codi (factorització amb pivotatge parcial esglaonat), i càlcul de matriu inversa vosaltres mateixos:
 import numpy as np
 
-def prettyP (v):
-    n = len(v)
-    P = np.zeros((n,n))
-    for i in range(n):
-        P[i, v[i]] = 1
-    return P
 
 def PA_LU_pivParcial (matA, tol = 1.e-10):
     A = matA.copy()
@@ -31,7 +25,7 @@ def PA_LU_pivParcial (matA, tol = 1.e-10):
             A[i,k] = m
             for j in range(k+1,n):
                 A[i,j] -= m*A[k,j]
-    return prettyP(P), A
+    return np.eye(n)[P], A
 
 def PA_LU_pivEsg (matA, tol = 1.e-10):
     A = matA.copy().astype(float)
@@ -57,11 +51,12 @@ def PA_LU_pivEsg (matA, tol = 1.e-10):
             A[i,k] = m
             for j in range(k+1,n):
                 A[i,j] -= m*A[k,j]
-    return prettyP(P), A
+    return np.eye(n)[P], A
 
-def triL(L, b, tol=1e-10, notOnes = True):
+def triL(matL, b, tol=1e-10, notOnes = True):
+    L = matL.copy().astype(float)
     n = len(b)
-    x = b
+    x = b.copy().astype(float)
     for i in range(0, n):
         for j in range(0,i):
             x[i] -= L[i, j]*x[j]
@@ -71,16 +66,16 @@ def triL(L, b, tol=1e-10, notOnes = True):
             x[i] /= L[i,i]
     return x
 
-def triU(U, b, tol=1e-10):
+def triU(matU, b, tol=1e-10):
+    U = matU.copy().astype(float)
     n = len(b)
-    x = b.copy()
+    x = b.copy().astype(float)
     for i in range(n-1, -1,-1):
         for j in range(i+1,n):
             x[i] -= U[i, j]*x[j]
         if (abs(U[i, i]) < tol):
             raise ValueError("Diagonal element too small")
-        else:
-            x[i] /= U[i,i]
+        x[i] /= U[i,i]
     return x
 
 def invPivEsg(matA):
@@ -93,8 +88,9 @@ def invPivEsg(matA):
     # 3) cada c_i será una columna de I
     I = np.zeros((n,n))
     for i in range(n):
-        y = triL(L, P[:,i])
-        I[:,i] = triU(U, y)
+        y = triL(L, P[:,i], notOnes = False)
+        x = triU(U, y)
+        I[:,i] = x
     return I
     
 print("Pivotatge parcial:")
